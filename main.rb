@@ -1,17 +1,18 @@
 # "X | O | X\n---------\nX | O | X\n---------\nX | O | X"
-class Player
+class Game
   @@board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
   @@move = 0
   @@moves_of_player = []
 
   def move
-    puts "  1 2 3    _|_|_\n  4 5 6 →  _|_|_\n  7 8 9     | | "
-    puts "\n#{@@board[0]} | #{@@board[1]} | #{@@board[2]}\n---------\n#{@@board[3]} | #{@@board[4]} | #{@@board[5]}\n---------\n#{@@board[6]} | #{@@board[7]} | #{@@board[8]}\n\n\n===========\n"
+    puts "\n  1 2 3    _|_|_\n  4 5 6 →  _|_|_\n  7 8 9     | | "
+    puts "\n#{@@board[0]} | #{@@board[1]} | #{@@board[2]}\n---------\n#{@@board[3]} | #{@@board[4]} | #{@@board[5]}\n---------\n#{@@board[6]} | #{@@board[7]} | #{@@board[8]}\n\n===========\n"
     if @@move.even? == true
       puts "You are X, make a move!"
     else
       puts "You are O, make a move!"
     end
+    print "Your move: "   
     move = gets.chomp.to_i
     check_move(move)
   end
@@ -47,12 +48,12 @@ class Player
        (@@board[0] == @@board[4] && @@board[4] == @@board[8] && @@board[4] != " ") ||
        (@@board[2] == @@board[4] && @@board[4] == @@board[6] && @@board[6] != " ")
     then
-      puts "\n#{@@board[0]} | #{@@board[1]} | #{@@board[2]}\n---------\n#{@@board[3]} | #{@@board[4]} | #{@@board[5]}\n---------\n#{@@board[6]} | #{@@board[7]} | #{@@board[8]}\n\n\n===========\n" 
+      puts "\n#{@@board[0]} | #{@@board[1]} | #{@@board[2]}\n---------\n#{@@board[3]} | #{@@board[4]} | #{@@board[5]}\n---------\n#{@@board[6]} | #{@@board[7]} | #{@@board[8]}\n\n===========\n" 
       puts "End game. #{@@board[@@moves_of_player.last - 1]} win"
     else
       @@board.include?(" ") == true ? self.move : (puts "End game. Nobody win")
     end
   end
 end
-player = Player.new
-player.move
+game = Game.new
+game.move
